@@ -76,7 +76,7 @@
             gap: 25px;
             width: 100%;
             max-width: 1100px;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
         }
 
         .product-card {
@@ -121,7 +121,7 @@
             min-height: 60px;
         }
 
-        .download-btn {
+        .download-btn, .install-btn {
             background-color: #a020f0; 
             color: #ffffff;
             border: none;
@@ -137,10 +137,67 @@
             letter-spacing: 1px;
         }
 
-        .download-btn:hover {
+        .download-btn:hover, .install-btn:hover {
             background-color: #b040f5; 
             box-shadow: 0 0 15px rgba(160, 32, 240, 0.5);
         }
+
+        /* BOTÃO DE INSTALAÇÃO NO CENTRO */
+        .install-section {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .install-btn {
+            background-color: transparent;
+            border: 2px solid #a020f0;
+            color: #a020f0;
+        }
+
+        .install-btn:hover {
+            background-color: #a020f0;
+            color: white;
+        }
+
+        /* ESTILO DO MODAL (GUI DE INSTALAÇÃO) */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0,0,0,0.9); 
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: #111;
+            margin: 5% auto;
+            padding: 30px;
+            border: 1px solid #a020f0;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(160, 32, 240, 0.4);
+        }
+
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-btn:hover { color: #a020f0; }
+
+        .tutorial-body h2 { color: #a020f0; margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        .tutorial-body h3 { color: #eee; margin: 20px 0 10px 0; font-size: 1.2rem; }
+        .tutorial-body p, .tutorial-body li { color: #bbb; line-height: 1.6; margin-bottom: 10px; }
+        .tutorial-body code { background: #222; color: #a020f0; padding: 2px 6px; border-radius: 4px; font-family: monospace; }
+        .cmd-box { background: #000; border: 1px solid #333; padding: 15px; border-radius: 8px; color: #0f0; font-family: 'Courier New', Courier, monospace; margin: 10px 0; overflow-x: auto; }
 
         /* RODAPÉ */
         footer {
@@ -151,22 +208,9 @@
             border-top: 1px solid #222;
         }
 
-        footer p {
-            color: #666;
-            font-size: 0.95rem;
-        }
-
-        footer a {
-            color: #a020f0;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        footer a:hover {
-            text-shadow: 0 0 10px rgba(160, 32, 240, 0.8);
-            color: #b040f5;
-        }
+        footer p { color: #666; font-size: 0.95rem; }
+        footer a { color: #a020f0; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        footer a:hover { text-shadow: 0 0 10px rgba(160, 32, 240, 0.8); color: #b040f5; }
     </style>
 </head>
 <body>
@@ -181,7 +225,6 @@
     </div>
 
     <div class="products-container">
-
         <div class="product-card">
             <div class="product-name">Evolution X</div>
             <div class="product-version">Android 16</div>
@@ -202,7 +245,46 @@
             <p class="product-about">Sinta a experiencia de um Google Pixel no seu Moto G84 com todos os recursos exclusivos.</p>
             <a href="https://pixeldrain.com/l/cvfSK7hx" target="_blank" class="download-btn">Baixar Agora</a>
         </div>
+    </div>
 
+    <div class="install-section">
+        <button class="install-btn" onclick="openModal()">⚙️ Instalar ROM</button>
+    </div>
+
+    <div id="installModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="tutorial-body">
+                <h2>🛠️ Guia de Instalação: Moto G84 (bangkk)</h2>
+                <p><strong>Aviso:</strong> Este processo apagará todos os seus dados. Faça backup antes!</p>
+
+                <h3>1. Preparação do Ambiente</h3>
+                <ul>
+                    <li>Instale os <strong>Drivers da Motorola</strong> no seu notebook.</li>
+                    <li>Baixe a pasta <strong>Platform-Tools (ADB/Fastboot)</strong>.</li>
+                    <li>Certifique-se de que o <strong>Bootloader</strong> do seu G84 está desbloqueado.</li>
+                </ul>
+
+                <h3>2. Organizando os Arquivos (IMPORTANTE)</h3>
+                <p>Mova <strong>TODOS</strong> os arquivos da ROM que você baixou para dentro da pasta <code>platform-tools</code>. Os comandos só funcionam se os arquivos da ROM e os arquivos do ADB estiverem no mesmo local.</p>
+
+                <h3>3. Modo Fastboot</h3>
+                <p>Desligue o celular e ligue segurando <strong>Power + Volume Down</strong>. Conecte ao notebook via USB.</p>
+
+                <h3>4. Comandos no CMD</h3>
+                <p>Dentro da pasta <code>platform-tools</code>, digite <code>cmd</code> na barra de endereços do Windows para abrir o terminal diretamente lá. Digite os comandos na ordem:</p>
+                
+                <div class="cmd-box">
+                    fastboot devices<br>
+                    fastboot flash boot boot.img<br>
+                    fastboot flash dtbo dtbo.img<br>
+                    fastboot flash vendor_boot vendor_boot.img
+                </div>
+
+                <h3>5. Finalização</h3>
+                <p>No celular, use os botões de volume para selecionar <strong>Recovery Mode</strong>, entre e selecione <strong>Factory Reset / Wipe Data</strong>. Depois, selecione <strong>Reboot System Now</strong>.</p>
+            </div>
+        </div>
     </div>
 
     <footer>
@@ -210,22 +292,24 @@
     </footer>
 
     <script>
+        // Função para Filtro de Pesquisa
         function filtrarProdutos() {
             let input = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.getElementsByClassName('product-card');
-
             for (let i = 0; i < cards.length; i++) {
                 let nome = cards[i].querySelector('.product-name').innerText.toLowerCase();
-                let versao = cards[i].querySelector('.product-version').innerText.toLowerCase();
-                
-                if (nome.includes(input) || versao.includes(input)) {
-                    cards[i].style.display = "";
-                } else {
-                    cards[i].style.display = "none";
-                }
+                if (nome.includes(input)) { cards[i].style.display = ""; } 
+                else { cards[i].style.display = "none"; }
             }
         }
-    </script>
 
+        // Funções do Modal
+        function openModal() { document.getElementById("installModal").style.display = "block"; }
+        function closeModal() { document.getElementById("installModal").style.display = "none"; }
+        window.onclick = function(event) {
+            let modal = document.getElementById("installModal");
+            if (event.target == modal) { modal.style.display = "none"; }
+        }
+    </script>
 </body>
 </html>
