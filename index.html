@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Railson - Downloads Hub</title>
+    <style>
+        /* CONFIGURAÇÕES GERAIS (PRETO E ROXO) */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0a0a0a; 
+            color: #eeeeee; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            margin-top: 20px;
+        }
+
+        header h1 {
+            color: #a020f0; 
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            text-shadow: 0 0 15px rgba(160, 32, 240, 0.7); 
+            letter-spacing: 2px;
+        }
+
+        header p {
+            color: #888;
+            margin-top: 5px;
+            font-size: 1rem;
+        }
+
+        /* BARRA DE PESQUISA */
+        .search-box {
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 40px;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 15px 25px;
+            background: #151515;
+            border: 2px solid #a020f0;
+            border-radius: 30px;
+            color: white;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(160, 32, 240, 0.2);
+            text-align: center;
+        }
+
+        #searchInput:focus {
+            box-shadow: 0 0 25px rgba(160, 32, 240, 0.5);
+            background: #1a1a1a;
+        }
+
+        /* CONTAINER DOS PRODUTOS */
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1100px;
+            margin-bottom: 50px;
+        }
+
+        .product-card {
+            background: rgba(20, 20, 20, 0.95);
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: #a020f0;
+            box-shadow: 0 5px 20px rgba(160, 32, 240, 0.3);
+        }
+
+        .product-name {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .product-version {
+            color: #a020f0; 
+            font-size: 0.9rem;
+            font-weight: bold;
+            background: rgba(160, 32, 240, 0.1);
+            padding: 3px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .product-about {
+            color: #bbb;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            min-height: 60px;
+        }
+
+        .download-btn {
+            background-color: #a020f0; 
+            color: #ffffff;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+            letter-spacing: 1px;
+        }
+
+        .download-btn:hover {
+            background-color: #b040f5; 
+            box-shadow: 0 0 15px rgba(160, 32, 240, 0.5);
+        }
+
+        /* RODAPÉ */
+        footer {
+            text-align: center;
+            margin-top: auto; 
+            padding: 30px;
+            width: 100%;
+            border-top: 1px solid #222;
+        }
+
+        footer p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        footer a {
+            color: #a020f0;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        footer a:hover {
+            text-shadow: 0 0 10px rgba(160, 32, 240, 0.8);
+            color: #b040f5;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Railson Mods</h1>
+        <p>Custom ROMs para Moto G84 (bangkk)</p>
+    </header>
+
+    <div class="search-box">
+        <input type="text" id="searchInput" onkeyup="filtrarProdutos()" placeholder="Pesquise por nome ou versão do Android...">
+    </div>
+
+    <div class="products-container">
+
+        <div class="product-card">
+            <div class="product-name">AyakaUI</div>
+            <div class="product-version">Android 16</div>
+            <p class="product-about">Custom ROM otimizada para o smartphone Moto G84. Estabilidade e visual fluído.</p>
+            <a href="#" target="_blank" class="download-btn">Baixar Agora</a>
+        </div>
+
+        <div class="product-card">
+            <div class="product-name">Evolution X</div>
+            <div class="product-version">Android 16</div>
+            <p class="product-about">Custom ROM com foco em personalização e performance para o Moto G84.</p>
+            <a href="#" target="_blank" class="download-btn">Baixar Agora</a>
+        </div>
+
+        <div class="product-card">
+            <div class="product-name">LineageOS</div>
+            <div class="product-version">Android 16</div>
+            <p class="product-about">Sistema limpo e focado em privacidade para usuários do Moto G84.</p>
+            <a href="#" target="_blank" class="download-btn">Baixar Agora</a>
+        </div>
+
+        <div class="product-card">
+            <div class="product-name">Lunaris AOSP</div>
+            <div class="product-version">Android 16</div>
+            <p class="product-about">Experiência Android pura e otimizada especificamente para o hardware bangkk.</p>
+            <a href="#" target="_blank" class="download-btn">Baixar Agora</a>
+        </div>
+
+        <div class="product-card">
+            <div class="product-name">PixelOS</div>
+            <div class="product-version">Android 16</div>
+            <p class="product-about">Sinta a experiência de um Google Pixel no seu Moto G84 com todos os recursos exclusivos.</p>
+            <a href="#" target="_blank" class="download-btn">Baixar Agora</a>
+        </div>
+
+        <div class="product-card">
+            <div class="product-name">RisingOS</div>
+            <div class="product-version">Android 14</div>
+            <p class="product-about">Custom ROM focada em games e recursos avançados para o Moto G84.</p>
+            <a href="#" target="_blank" class="download-btn">Baixar Agora</a>
+        </div>
+
+        <div class="product-card">
+            <div class="product-name">Vallhound</div>
+            <div class="product-version">Android 16</div>
+            <p class="product-about">Performance extrema e estabilidade para o uso diário no Moto G84.</p>
+            <a href="#" target="_blank" class="download-btn">Baixar Agora</a>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Desenvolvido por <a href="https://t.me/DevSketBR" target="_blank">Railson</a> | 2026</p>
+    </footer>
+
+    <script>
+        function filtrarProdutos() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('product-card');
+
+            for (let i = 0; i < cards.length; i++) {
+                let nome = cards[i].querySelector('.product-name').innerText.toLowerCase();
+                let versao = cards[i].querySelector('.product-version').innerText.toLowerCase();
+                
+                if (nome.includes(input) || versao.includes(input)) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
