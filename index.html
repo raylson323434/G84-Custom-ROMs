@@ -159,7 +159,7 @@
             color: white;
         }
 
-        /* ESTILO DO MODAL (GUI DE INSTALAÇÃO) */
+        /* ESTILO DOS MODAIS */
         .modal {
             display: none; 
             position: fixed; 
@@ -229,26 +229,36 @@
             <div class="product-name">Evolution X</div>
             <div class="product-version">Android 16</div>
             <p class="product-about">Custom ROM com foco em personalizacao e performance para o Moto G84.</p>
-            <a href="https://drive.google.com/drive/folders/1Fh91ylPKUs6zku49eIf9Gn4ZtFwOk6V6" target="_blank" class="download-btn">Baixar Agora</a>
-        </div>
-
-        <div class="product-card">
-            <div class="product-name">LineageOS</div>
-            <div class="product-version">Android 16</div>
-            <p class="product-about">Sistema limpo e focado em privacidade para usuarios do Moto G84.</p>
-            <a href="https://wiki.lineageos.org/devices/bangkk/" target="_blank" class="download-btn">Baixar Agora</a>
-        </div>
-
-        <div class="product-card">
-            <div class="product-name">PixelOS</div>
-            <div class="product-version">Android 16</div>
-            <p class="product-about">Sinta a experiencia de um Google Pixel no seu Moto G84 com todos os recursos exclusivos.</p>
-            <a href="https://pixeldrain.com/l/cvfSK7hx" target="_blank" class="download-btn">Baixar Agora</a>
+            <button class="download-btn" onclick="openDownloadModal()">Baixar Agora</button>
         </div>
     </div>
 
     <div class="install-section">
         <button class="install-btn" onclick="openModal()">Instalar ROM</button>
+    </div>
+
+    <div id="downloadModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeDownloadModal()">&times;</span>
+            <div class="tutorial-body">
+                <h2>Evolution X</h2>
+                <h3>Versão</h3>
+                <p>Android 16</p>
+
+                <h3>Descrição</h3>
+                <p>Custom ROM com foco em personalização e performance para o Moto G84.</p>
+
+                <h3>NOTAS</h3>
+                <ul>
+                    <li>Primeira build</li>
+                    <li>Build inicial A16 QPR1</li>
+                    <li>Dolby OSS incluso</li>
+                    <li>Moto Câmara 4 incluída</li>
+                </ul>
+                <br>
+                <a href="https://drive.google.com/drive/folders/1Fh91ylPKUs6zku49eIf9Gn4ZtFwOk6V6" target="_blank" class="download-btn">Baixar ROM</a>
+            </div>
+        </div>
     </div>
 
     <div id="installModal" class="modal">
@@ -292,7 +302,6 @@
     </footer>
 
     <script>
-        // Função para Filtro de Pesquisa
         function filtrarProdutos() {
             let input = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.getElementsByClassName('product-card');
@@ -303,12 +312,20 @@
             }
         }
 
-        // Funções do Modal
+        // Funções para Modal de Instalação
         function openModal() { document.getElementById("installModal").style.display = "block"; }
         function closeModal() { document.getElementById("installModal").style.display = "none"; }
+
+        // Funções para Modal de Download
+        function openDownloadModal() { document.getElementById("downloadModal").style.display = "block"; }
+        function closeDownloadModal() { document.getElementById("downloadModal").style.display = "none"; }
+
+        // Fechar ao clicar fora do modal
         window.onclick = function(event) {
-            let modal = document.getElementById("installModal");
-            if (event.target == modal) { modal.style.display = "none"; }
+            let installModal = document.getElementById("installModal");
+            let downloadModal = document.getElementById("downloadModal");
+            if (event.target == installModal) { installModal.style.display = "none"; }
+            if (event.target == downloadModal) { downloadModal.style.display = "none"; }
         }
     </script>
 </body>
